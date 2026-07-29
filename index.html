@@ -96,11 +96,11 @@
   <div class="pointer-events-none fixed inset-0 bg-radial from-transparent via-transparent to-black/[0.02]" aria-hidden="true"></div>
 
   <!-- Main Content Area -->
-  <main class="w-full max-w-5xl my-auto flex flex-col items-center justify-center py-4">
+  <main class="w-full max-w-7xl my-auto flex flex-col items-center justify-center py-4 px-2 sm:px-4">
     
     <!-- 1. ARTHUR & CO. Logo -->
     <div class="arthur-renewal-logo-wrapper flex flex-col items-center justify-center pt-2 pb-1">
-      <div class="relative flex items-center justify-center max-w-[380px] sm:max-w-[520px] md:max-w-[650px] lg:max-w-[750px] h-28 sm:h-36 md:h-44 lg:h-52 px-2">
+      <div class="relative flex items-center justify-center max-w-[420px] sm:max-w-[600px] md:max-w-[750px] lg:max-w-[900px] h-32 sm:h-40 md:h-52 lg:h-60 px-2">
         <img 
           id="arthur-main-logo"
           src="https://cdn.imweb.me/thumbnail/20260729/63c1d1e64ecf1.png" 
@@ -137,7 +137,7 @@
     </div>
 
     <!-- 3. Operating Brands 3x3 Grid -->
-    <div class="arthur-renewal-brand-grid-wrapper w-full max-w-5xl mx-auto px-2 sm:px-4 my-3 sm:my-5">
+    <div class="arthur-renewal-brand-grid-wrapper w-full max-w-7xl mx-auto px-1 sm:px-3 md:px-4 my-3 sm:my-6">
       <div id="brand-grid-container" class="grid grid-cols-3 grid-rows-3 border-t border-l border-[#ECE8E0] shadow-sm bg-white/80 backdrop-blur-[2px]">
         <!-- Brand Cells rendered via JS below -->
       </div>
@@ -191,11 +191,11 @@
 
   function getWordmarkStyle(name) {
     if (name.length > 11) {
-      return "text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-[0.16em]";
+      return "text-xs sm:text-base md:text-lg lg:text-xl tracking-[0.14em] sm:tracking-[0.18em]";
     } else if (name.length > 8) {
-      return "text-sm sm:text-base md:text-lg tracking-[0.16em] sm:tracking-[0.22em]";
+      return "text-sm sm:text-lg md:text-xl lg:text-2xl tracking-[0.18em] sm:tracking-[0.24em]";
     }
-    return "text-base sm:text-lg md:text-xl lg:text-2xl tracking-[0.2em] sm:tracking-[0.28em]";
+    return "text-base sm:text-xl md:text-2xl lg:text-3xl tracking-[0.22em] sm:tracking-[0.3em]";
   }
 
   function renderBrandGrid() {
@@ -210,7 +210,7 @@
       if (brand.logo) {
         innerContent = `
           <div class="relative w-full h-full flex items-center justify-center p-2 sm:p-3">
-            <div class="w-full h-full max-h-[75%] max-w-[85%] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]" style="transform: scale(${scaleVal});">
+            <div class="w-full h-full max-h-[82%] max-w-[88%] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]" style="transform: scale(${scaleVal});">
               <img 
                 src="${brand.logo}" 
                 alt="${brand.name} logo" 
@@ -229,7 +229,7 @@
       }
 
       return `
-        <div class="arthur-renewal-brand-cell relative border-r border-b border-[#ECE8E0] h-20 sm:h-28 md:h-32 lg:h-36 flex items-center justify-center p-2 sm:p-4 text-center group cursor-default transition-all duration-300 hover:bg-[#F3EFE7]/50">
+        <div class="arthur-renewal-brand-cell relative border-r border-b border-[#ECE8E0] h-24 sm:h-36 md:h-44 lg:h-52 xl:h-56 flex items-center justify-center p-2 sm:p-5 text-center group cursor-default transition-all duration-300 hover:bg-[#F3EFE7]/50">
           <div class="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-1.5 h-1.5 rounded-full bg-black/0 group-hover:bg-black/30 transition-all duration-300" aria-hidden="true"></div>
           ${innerContent}
         </div>
