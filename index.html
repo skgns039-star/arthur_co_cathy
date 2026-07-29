@@ -100,7 +100,7 @@
     
     <!-- 1. ARTHUR & CO. Logo -->
     <div class="arthur-renewal-logo-wrapper flex flex-col items-center justify-center pt-2 pb-1">
-      <div class="relative flex items-center justify-center max-w-[320px] sm:max-w-[420px] md:max-w-[500px] h-20 sm:h-24 md:h-28 lg:h-32 px-2">
+      <div class="relative flex items-center justify-center max-w-[380px] sm:max-w-[520px] md:max-w-[650px] lg:max-w-[750px] h-28 sm:h-36 md:h-44 lg:h-52 px-2">
         <img 
           id="arthur-main-logo"
           src="https://cdn.imweb.me/thumbnail/20260729/63c1d1e64ecf1.png" 
@@ -148,22 +148,23 @@
   <!-- 4. Contact Email Footer -->
   <footer class="arthur-renewal-footer text-center pt-3 sm:pt-4 pb-4 sm:pb-5 mt-auto relative">
     <div class="inline-flex flex-col items-center justify-center space-y-1.5 relative">
-      <span class="text-[11px] sm:text-xs tracking-[0.2em] uppercase text-black/45 font-sansBody">
+      <span class="text-[11px] sm:text-xs tracking-[0.2em] uppercase font-sansBody font-medium" style="color: #555555 !important;">
         Inquiries & Contact
       </span>
 
       <div class="relative inline-block">
-        <a 
-          href="mailto:cathy@arthurnco.com" 
+        <button 
+          type="button" 
           id="email-copy-link"
           aria-label="Copy inquiry email cathy@arthurnco.com"
-          class="text-sm sm:text-base font-sansBody font-normal tracking-[0.08em] text-black/80 hover:text-black focus-visible:text-black transition-colors duration-300 underline underline-offset-4 decoration-black/25 hover:decoration-black px-2.5 py-1 rounded-sm cursor-pointer"
+          class="text-sm sm:text-base font-sansBody font-medium tracking-[0.08em] hover:opacity-80 transition-opacity duration-300 underline underline-offset-4 px-2.5 py-1 rounded-sm cursor-pointer border-0 bg-transparent"
+          style="color: #111111 !important; text-decoration: underline !important; text-decoration-color: #111111 !important;"
         >
           cathy@arthurnco.com
-        </a>
+        </button>
 
         <!-- Toast Notification -->
-        <div id="copy-toast" class="hidden absolute left-1/2 -translate-x-1/2 -top-10 whitespace-nowrap bg-black text-white text-[11px] sm:text-xs tracking-wider px-3 py-1 rounded shadow-md pointer-events-none flex items-center space-x-1.5 transition-all">
+        <div id="copy-toast" class="hidden absolute left-1/2 -translate-x-1/2 -top-10 whitespace-nowrap bg-black text-white text-[11px] sm:text-xs tracking-wider px-3.5 py-1.5 rounded shadow-lg pointer-events-none flex items-center space-x-1.5 z-50 transition-all">
           <span class="text-emerald-400 font-bold">✓</span>
           <span>이메일 주소가 복사되었습니다</span>
         </div>
@@ -240,11 +241,15 @@
   document.addEventListener('DOMContentLoaded', () => {
     renderBrandGrid();
 
-    const emailLink = document.getElementById('email-copy-link');
+    const emailBtn = document.getElementById('email-copy-link');
     const toast = document.getElementById('copy-toast');
 
-    if (emailLink) {
-      emailLink.addEventListener('click', (e) => {
+    if (emailBtn) {
+      emailBtn.addEventListener('click', (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
         const email = 'cathy@arthurnco.com';
         
         function showToast() {
@@ -255,19 +260,25 @@
         }
 
         if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(email).then(showToast).catch(() => {});
+          navigator.clipboard.writeText(email).then(showToast).catch(() => {
+            fallbackCopy(email, showToast);
+          });
         } else {
-          const textArea = document.createElement("textarea");
-          textArea.value = email;
-          document.body.appendChild(textArea);
-          textArea.select();
-          try {
-            document.execCommand("copy");
-            showToast();
-          } catch (err) {}
-          document.body.removeChild(textArea);
+          fallbackCopy(email, showToast);
         }
       });
+    }
+
+    function fallbackCopy(text, cb) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand("copy");
+        if (cb) cb();
+      } catch (err) {}
+      document.body.removeChild(textArea);
     }
   });
 </script>
