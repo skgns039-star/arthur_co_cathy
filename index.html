@@ -110,11 +110,10 @@
       <div class="relative flex items-center justify-center max-w-[480px] sm:max-w-[680px] md:max-w-[850px] lg:max-w-[1050px] h-36 sm:h-48 md:h-60 lg:h-72 px-2">
         <img 
           id="arthur-main-logo"
-          src="https://cdn.imweb.me/thumbnail/20260729/63c1d1e64ecf1.png" 
+          src="logos/arthur.png" 
           alt="ARTHUR & CO." 
           class="max-h-full max-w-full object-contain"
-          style="filter: invert(0.97); mix-blend-mode: screen;"
-          onerror="this.style.display='none'; document.getElementById('arthur-logo-fallback').style.display='block';"
+          onerror="this.src='https://cdn.imweb.me/thumbnail/20260729/63c1d1e64ecf1.png'; this.style.filter='invert(0.97)'; this.style.mixBlendMode='screen';"
         />
         <div id="arthur-logo-fallback" class="hidden text-center py-2">
           <span class="font-serifDisplay text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-[0.28em] text-[#F7F7F5] font-medium uppercase block">
@@ -186,15 +185,15 @@
 <script>
   // 9 Operating Brands Data
   const BRAND_ASSETS = [
-    { name: "TOUS", logo: "https://cdn.imweb.me/thumbnail/20260729/228d0cb58c77d.png", scale: 1.0 },
-    { name: "PORSELLI", logo: "", scale: 1.0 },
-    { name: "DUCKFEET", logo: "https://cdn.imweb.me/thumbnail/20260729/311ab9d782845.png", scale: 1.55 },
-    { name: "SPELTA MILANO", logo: "", scale: 1.0 },
-    { name: "DISNEY", logo: "", scale: 1.0 },
-    { name: "COMPRESSPORT", logo: "https://cdn.imweb.me/thumbnail/20260729/3920b4765acf3.png", scale: 2.4 },
-    { name: "CELLVISION", logo: "https://cdn.imweb.me/thumbnail/20260729/10ee4b70ea738.png", scale: 2.4 },
-    { name: "VERUTUM", logo: "https://cdn.imweb.me/thumbnail/20260729/4724e4042b176.png", scale: 1.45 },
-    { name: "NUTRICARE", logo: "", scale: 1.0 }
+    { name: "TOUS", logo: "logos/tous.png", scale: 1.15 },
+    { name: "PORSELLI", logo: "logos/porselli.png", scale: 1.1 },
+    { name: "DUCKFEET", logo: "logos/duckfeet.png", scale: 0.95 },
+    { name: "SPELTA MILANO", logo: "logos/spelta.png", scale: 1.0 },
+    { name: "DISNEY", logo: "logos/disney.png", scale: 0.95 },
+    { name: "COMPRESSPORT", logo: "logos/compressport.png", scale: 1.0 },
+    { name: "CELLVISION", logo: "logos/cellvision.png", scale: 1.05 },
+    { name: "VERUTUM", logo: "logos/verutum.png", scale: 1.05 },
+    { name: "NUTRICARE", logo: "logos/nutricare.png", scale: 0.9 }
   ];
 
   function getWordmarkStyle(name) {
@@ -218,11 +217,11 @@
       if (brand.logo) {
         innerContent = `
           <div class="relative w-full h-full flex items-center justify-center p-2 sm:p-3">
-            <div class="w-full h-full max-h-[86%] max-w-[90%] flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.04]" style="transform: scale(${scaleVal});">
+            <div class="w-full h-full max-h-[82%] max-w-[88%] flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.03]" style="transform: scale(${scaleVal});">
               <img 
                 src="${brand.logo}" 
                 alt="${brand.name} logo" 
-                style="filter: invert(0.97); mix-blend-mode: screen;"
+                style="${brand.logo.includes('logos') ? '' : 'filter: invert(0.97); mix-blend-mode: screen;'}"
                 class="max-h-full max-w-full object-contain transition-all duration-500 opacity-90 group-hover:opacity-100"
                 onerror="this.parentElement.innerHTML=\`<span class='font-serifDisplay font-medium text-[#F7F7F5]/85 group-hover:text-[#F7F7F5] uppercase whitespace-nowrap ${wordmarkClass}'>${brand.name}</span>\`;"
               />
